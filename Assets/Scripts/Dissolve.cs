@@ -27,7 +27,6 @@ public class Dissolve : MonoBehaviour
 
     public void DissolveStarter()
     {
-        print("ey");
         isDissolving = true;
     }
     public void DissolveStopper()
