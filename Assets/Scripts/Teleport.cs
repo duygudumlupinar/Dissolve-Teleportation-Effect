@@ -8,22 +8,14 @@ public class Teleport : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        OtherPortal.gameObject.GetComponent<Collider>().enabled = false;
-        GetComponent<Collider>().enabled = false;
+        other.gameObject.GetComponent<Dissolve>().isDissolving = true;
         StartCoroutine(Reappear(other));
     }
 
     IEnumerator Reappear(Collider other)
     {
-        yield return new WaitForSeconds(2);
-        other.gameObject.GetComponent<Dissolve>().isDissolving = !other.gameObject.GetComponent<Dissolve>().isDissolving;
+        yield return new WaitForSeconds(1);
         other.transform.position = OtherPortal.position;
-    }
-
-    IEnumerator ColliderSet()
-    {
-        yield return new WaitForSeconds(2);
-        OtherPortal.gameObject.GetComponent<Collider>().enabled = true;
-        GetComponent<Collider>().enabled = true;
+        other.gameObject.GetComponent<Dissolve>().isDissolving = false;
     }
 }
